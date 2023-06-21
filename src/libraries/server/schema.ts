@@ -29,6 +29,7 @@ export const schema = gql`
     user(id: ID!): User
     todo(id: ID!): Todo
     userTodos: [Todo]
+    getUser: User
   }
 
   input TodoInput {
@@ -38,7 +39,7 @@ export const schema = gql`
   }
 
   type Mutation {
-    createUser(email: String!, password: String!): User
+    createUser(email: String!, password: String!): String
     createTodo(content: String!): Todo
     updateTodo(todo: TodoInput!): Todo
     deleteTodo(id: ID!): Boolean
