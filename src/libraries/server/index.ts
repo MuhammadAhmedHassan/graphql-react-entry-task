@@ -25,6 +25,10 @@ export const server = createServer({
           async userTodos(obj: any, args: any, context: any, info: any) {
             const user = await getCurrentUser(context);
             return user.todos.models;
+          },
+          async getUser(obj: any, args: any, context: any, info: any) {
+            const user = await getCurrentUser(context);
+            return user;
           }
         },
         Mutation: {
@@ -41,7 +45,8 @@ export const server = createServer({
               passwordHashed,
               createdAt: now
             });
-            return user;
+            // return user;
+            return sign({ id: user.id, email: user.email });
           },
 
           async createTodo(obj: any, args: any, context: any, info: any) {
